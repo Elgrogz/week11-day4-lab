@@ -1,5 +1,5 @@
 var data = null;
-var populationData = [];
+
 
 var makeRequest = function(url, callback) {
     var request = new XMLHttpRequest();
@@ -13,16 +13,19 @@ var requestComplete = function() {
   var jsonString = this.responseText;
   data = JSON.parse(jsonString);
 
-
-  for (var country of data) {
-    if (country.region === "Europe") {
-    populationData.push({name: country.name, data: [country.population]});
-    }
-  }
-    new ColumnChart(populationData);
-  console.log(populationData)
+  populateEuropeanChart();
 } 
 
+var populateEuropeanChart = function() {
+  var container = document.querySelector('#column-chart-europe');
+  var populationData = [];
+  for (var country of data) {
+    if (country.region === "Europe") {
+      populationData.push({name: country.name, data: [country.population]});
+    }
+  }
+  new ColumnChart(container, populationData);
+}
 
 window.onload = function() {
   var url = "https://restcountries.eu/rest/v1/all";

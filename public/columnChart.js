@@ -1,5 +1,4 @@
-var ColumnChart = function(seriesToAdd) {
-  var container = document.querySelector('#column-chart');
+var ColumnChart = function(containerToAdd, seriesToAdd) {
 
 
   // var addSeries = function(nameToAdd, dataToAdd) {
@@ -11,7 +10,7 @@ var ColumnChart = function(seriesToAdd) {
   var chart = new Highcharts.Chart({
     chart: {
       type: "column",
-      renderTo: container
+      renderTo: containerToAdd
     },
     title: {
         text: "Populationzzzzz"
